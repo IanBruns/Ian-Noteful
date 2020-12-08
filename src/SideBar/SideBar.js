@@ -4,10 +4,14 @@ import Folder from '../Folder/Folder'
 
 class SideBar extends React.Component {
     render() {
+        const folders = this.props.folders.map(folder => {
+            return <Folder
+                key={folder.id}
+                name={folder.name} />
+        })
         return (
             <div className='SideBar'>
-                Hi, I'm the sidebar
-                <Folder />
+                {folders}
             </div>
         )
     }

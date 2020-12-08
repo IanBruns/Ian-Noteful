@@ -4,10 +4,20 @@ import './NoteStorage.css';
 
 class NoteStorage extends React.Component {
     render() {
+        const notes = this.props.notes.map(note => {
+            return <Note
+                key={note.id}
+                id={note.id}
+                name={note.name}
+                modified={note.modified}
+                folderId={note.folderId}
+                content={note.content}
+            />
+        });
+
         return (
             <div className='NoteStorage' >
-                And I'm where you actually store stuff
-                <Note />
+                {notes}
             </div>
         )
     }

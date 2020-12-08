@@ -4,7 +4,7 @@ import './Folder.css'
 class Folder extends React.Component {
     render() {
         return <div className='Folder'>
-            And I'm a folder
+            <h3>{this.props.name}</h3>
         </div>
     }
 }
