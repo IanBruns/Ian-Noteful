@@ -7,10 +7,9 @@ class SideBar extends React.Component {
     render() {
         const folders = this.props.folders.map(folder => {
             return (
-                <div className='folder'>
+                <div className='folder' key={folder.id}>
                     <Link
-                        activeClassName='selected'
-                        to={`/folder/${folder.name}`}>{folder.name}</Link>
+                        to={`/folder/${folder.id}`}>{folder.name}</Link>
                 </div>
             )
         })
