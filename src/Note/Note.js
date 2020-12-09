@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import './Note.css'
 
 class Note extends React.Component {
+
+    deleteButton = (e) => {
+        this.props.deleteButtonClick(this.props.id)
+    }
+
     render() {
         let date = new Date(this.props.modified);
         let formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
@@ -16,7 +21,7 @@ class Note extends React.Component {
                     <p>
                         Date Modified: {formatDate}
                     </p>
-                    <button>
+                    <button onClick={e => this.deleteButton(e)}>
                         Delete
                     </button>
                 </div>

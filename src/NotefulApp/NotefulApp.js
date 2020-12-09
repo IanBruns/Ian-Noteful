@@ -50,6 +50,23 @@ class NotefulApp extends React.Component {
             })
     }
 
+    handleDeleteItem(noteId) {
+        const filterState = this.state.notes.filter(note => {
+            return note.id !== noteId;
+        })
+        fetch(`http://localhost:9090/notes/${noteId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(() => {
+                this.setState({
+                    notes: filterState
+                })
+            })
+    }
+
     componentDidMount() {
         this.getFolderData();
         this.getNoteData();
@@ -73,16 +90,19 @@ class NotefulApp extends React.Component {
                 </div>
                 <div className='flex-three'>
                     <Route exact path='/'
-                        render={() => <NoteStorage notes={this.state.notes} />}
+                        render={() => <NoteStorage notes={this.state.notes}
+                            deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
                     />
                     <Route path='/folder/:folderId'
                         render={(props) => <NoteStorageFolder {...props}
                             folders={this.state.folders}
-                            notes={this.state.notes} />}
+                            notes={this.state.notes}
+                            deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
                     />
                     <Route path='/note/:noteId'
                         render={(props) => <NoteStorageNote {...props}
-                            notes={this.state.notes} />}
+                            notes={this.state.notes}
+                            deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
                     />
                 </div>
             </div>

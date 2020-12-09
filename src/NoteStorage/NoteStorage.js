@@ -12,6 +12,7 @@ class NoteStorage extends React.Component {
                 modified={note.modified}
                 folderId={note.folderId}
                 content={note.content}
+                deleteButtonClick={this.props.deleteButtonClick}
             />
         });
 
