@@ -1,21 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import history from '../history'
 import NotefulContext from '../NotefulContext';
 import './Note.css'
 
 class Note extends React.Component {
     static contextType = NotefulContext;
 
-    deleteButton = () => {
+    deleteButton = (e) => {
+        e.stopPropagation();
         const { deleteItem } = this.context;
-        fetch(`http://localhost:9090/notes/${this.props.id})`, {
+        fetch(`http://localhost:9090/notes/${this.props.id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
             },
         })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('There was an error in deletion')
+                }
+                return response.json();
+            })
             .then(() => {
                 deleteItem(this.props.id);
+            })
+            .catch(err => {
+                alert(err)
             })
     }
 
@@ -32,7 +43,7 @@ class Note extends React.Component {
                     <p>
                         Date Modified: {formatDate}
                     </p>
-                    <button onClick={() => this.deleteButton()}>
+                    <button onClick={this.deleteButton}>
                         Delete
                     </button>
                 </div>

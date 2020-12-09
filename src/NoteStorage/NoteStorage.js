@@ -9,14 +9,17 @@ class NoteStorage extends React.Component {
     render() {
         const { notes } = this.context;
         const notesMap = notes.map(note => {
-            return <Note
-                key={note.id}
-                id={note.id}
-                name={note.name}
-                modified={note.modified}
-                folderId={note.folderId}
-                content={note.content}
-            />
+            return (
+                <Note
+                    key={note.id}
+                    id={note.id}
+                    name={note.name}
+                    modified={note.modified}
+                    folderId={note.folderId}
+                    content={note.content}
+                    singleNote={note}
+                />
+            )
         });
 
         return (
