@@ -92,10 +92,7 @@ class NotefulApp extends React.Component {
                             component={NoteStorage}
                         />
                         <Route path='/folder/:folderId'
-                            render={(props) => <NoteStorageFolder {...props}
-                                folders={this.state.folders}
-                                notes={this.state.notes}
-                                deleteButtonClick={(itemId) => this.deleteItem(itemId)} />}
+                            component={NoteStorageFolder}
                         />
                         <Route path='/note/:noteId'
                             component={NoteStorageNote}
