@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './App.css';
 import NotefulApp from './NotefulApp/NotefulApp'
 
@@ -5,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Noteful! By Ian</h1>
+        <h1><Link to={`/`}>Noteful! By Ian</Link></h1>
       </header>
       <main>
         <NotefulApp />

@@ -5,6 +5,7 @@ import SideBarFolder from '../SideBarFolder/SideBarFolder';
 import SideBarNote from '../SideBarNote/SideBarNote';
 import NoteStorage from '../NoteStorage/NoteStorage';
 import NoteStorageFolder from '../NoteStorageFolder/NoteStorageFolder';
+import NoteStorageNote from '../NoteStorageNote/NoteStorageNote';
 import { Route } from 'react-router-dom'
 
 class NotefulApp extends React.Component {
@@ -135,8 +136,10 @@ class NotefulApp extends React.Component {
                     <Route path='/folder/:folderId'
                         render={() => <SideBarFolder folders={this.state.folders} />}
                     />
-                    <Route path='note/:noteId'
-                        render={() => <SideBarNote notes={this.state.notes} />}
+                    <Route path='/note/:noteId'
+                        render={(props) => <SideBarNote {...props}
+                            notes={this.state.notes}
+                            folders={this.state.folders} />}
                     />
                 </div>
                 <div className='flex-three'>
@@ -146,6 +149,10 @@ class NotefulApp extends React.Component {
                     <Route path='/folder/:folderId'
                         render={(props) => <NoteStorageFolder {...props}
                             folders={this.state.folders}
+                            notes={this.state.notes} />}
+                    />
+                    <Route path='/note/:noteId'
+                        render={(props) => <NoteStorageNote {...props}
                             notes={this.state.notes} />}
                     />
                 </div>
