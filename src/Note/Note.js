@@ -1,11 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import NotefulContext from '../NotefulContext';
 import './Note.css'
 
 class Note extends React.Component {
+    static contextType = NotefulContext;
 
-    deleteButton = (e) => {
-        this.props.deleteButtonClick(this.props.id)
+    deleteButton = () => {
+        const { deleteItem } = this.context;
+        fetch(`http://localhost:9090/notes/${this.props.id})`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+            .then(() => {
+                deleteItem(this.props.id);
+            })
     }
 
     render() {
@@ -21,7 +32,7 @@ class Note extends React.Component {
                     <p>
                         Date Modified: {formatDate}
                     </p>
-                    <button onClick={e => this.deleteButton(e)}>
+                    <button onClick={() => this.deleteButton()}>
                         Delete
                     </button>
                 </div>

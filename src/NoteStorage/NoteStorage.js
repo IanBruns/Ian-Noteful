@@ -1,10 +1,14 @@
 import React from 'react';
 import Note from '../Note/Note'
+import NotefulContext from '../NotefulContext'
 import './NoteStorage.css';
 
 class NoteStorage extends React.Component {
+    static contextType = NotefulContext;
+
     render() {
-        const notes = this.props.notes.map(note => {
+        const { notes } = this.context;
+        const notesMap = notes.map(note => {
             return <Note
                 key={note.id}
                 id={note.id}
@@ -12,13 +16,12 @@ class NoteStorage extends React.Component {
                 modified={note.modified}
                 folderId={note.folderId}
                 content={note.content}
-                deleteButtonClick={this.props.deleteButtonClick}
             />
         });
 
         return (
             <div className='NoteStorage' >
-                {notes}
+                {notesMap}
             </div>
         )
     }

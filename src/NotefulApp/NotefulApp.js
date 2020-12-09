@@ -51,21 +51,14 @@ class NotefulApp extends React.Component {
             })
     }
 
-    handleDeleteItem(noteId) {
+    deleteItem = (noteId) => {
         const filterState = this.state.notes.filter(note => {
             return note.id !== noteId;
         })
-        fetch(`http://localhost:9090/notes/${noteId}`, {
-            method: 'DELETE',
-            headers: {
-                'content-type': 'application/json'
-            },
+
+        this.setState({
+            notes: filterState
         })
-            .then(() => {
-                this.setState({
-                    notes: filterState
-                })
-            })
     }
 
     componentDidMount() {
@@ -76,7 +69,8 @@ class NotefulApp extends React.Component {
     render() {
         const contextValue = {
             notes: this.state.notes,
-            folders: this.state.folders
+            folders: this.state.folders,
+            deleteItem: this.deleteItem
         }
         return (
             <div className='NotefulApp'>
@@ -84,32 +78,27 @@ class NotefulApp extends React.Component {
                     value={contextValue}>
                     <div className='flex-one'>
                         <Route exact path='/'
-                            render={() => <SideBar folders={this.state.folders} />}
+                            component={SideBar}
                         />
                         <Route path='/folder/:folderId'
-                            render={() => <SideBarFolder folders={this.state.folders} />}
+                            component={SideBarFolder}
                         />
                         <Route path='/note/:noteId'
-                            render={(props) => <SideBarNote {...props}
-                                notes={this.state.notes}
-                                folders={this.state.folders} />}
+                            component={SideBarNote}
                         />
                     </div>
                     <div className='flex-three'>
                         <Route exact path='/'
-                            render={() => <NoteStorage notes={this.state.notes}
-                                deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
+                            component={NoteStorage}
                         />
                         <Route path='/folder/:folderId'
                             render={(props) => <NoteStorageFolder {...props}
                                 folders={this.state.folders}
                                 notes={this.state.notes}
-                                deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
+                                deleteButtonClick={(itemId) => this.deleteItem(itemId)} />}
                         />
                         <Route path='/note/:noteId'
-                            render={(props) => <NoteStorageNote {...props}
-                                notes={this.state.notes}
-                                deleteButtonClick={(itemId) => this.handleDeleteItem(itemId)} />}
+                            component={NoteStorageNote}
                         />
                     </div>
                 </NotefulContext.Provider>
