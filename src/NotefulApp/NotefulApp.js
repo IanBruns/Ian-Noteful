@@ -7,6 +7,7 @@ import NoteStorage from '../NoteStorage/NoteStorage';
 import NoteStorageFolder from '../NoteStorageFolder/NoteStorageFolder';
 import NoteStorageNote from '../NoteStorageNote/NoteStorageNote';
 import NotefulContext from '../NotefulContext'
+import AddFolder from '../AddFolder/AddFolder'
 import { Route } from 'react-router-dom'
 
 class NotefulApp extends React.Component {
@@ -97,6 +98,8 @@ class NotefulApp extends React.Component {
                         <Route path='/note/:noteId'
                             component={NoteStorageNote}
                         />
+                        <Route path='/addFolder'
+                            component={AddFolder} />
                     </div>
                 </NotefulContext.Provider>
             </div>
