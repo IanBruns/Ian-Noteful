@@ -1,6 +1,7 @@
 import React from 'react';
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
+import { Link } from 'react-router-dom'
 import './NoteStorage.css';
 
 class NoteStorage extends React.Component {
@@ -25,6 +26,12 @@ class NoteStorage extends React.Component {
         return (
             <div className='NoteStorage' >
                 {notesMap}
+                <Link
+                    to={'/addNote'}>
+                    <button>
+                        Add New Folder
+                    </button>
+                </Link>
             </div>
         )
     }

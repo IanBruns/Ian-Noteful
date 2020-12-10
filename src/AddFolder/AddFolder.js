@@ -55,6 +55,9 @@ class AddFolder extends React.Component {
                             Create New Folder!
                         </button>
                     </fieldset>
+                    <button onClick={() => this.props.history.goBack()}>
+                        Cancel
+                    </button>
                 </form>
             </div>
         )
