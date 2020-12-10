@@ -2,20 +2,48 @@ import React from 'react'
 import NotefulContext from '../NotefulContext';
 
 class AddNote extends React.Component {
+    static contextType = NotefulContext;
+
     constructor(props) {
         super(props)
         this.state = {
             noteName: '',
             noteContent: '',
-            targetFolder: '',
+            targetFolderId: ''
         }
     }
-    static contextType = NotefulContext;
 
     handleSubmit = e => {
         e.preventDefault();
+        const { addNote } = this.context;
+        const modified = new Date().toISOString();
 
-        console.log('click')
+        fetch('http://localhost:9090/folders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: this.state.noteName,
+                modified: modified,
+                folderId: this.state.targetFolderId,
+                content: this.state.noteContent,
+            }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('We could not post this new note')
+                }
+                return response.json()
+            })
+            .then(data => {
+                addNote(data);
+                this.setState({
+                    noteName: '',
+                    noteContent: '',
+                    targetFolderId: ''
+                })
+                this.props.history.goBack();
+            })
+
     }
 
     updateNoteName(newNoteName) {
@@ -27,6 +55,12 @@ class AddNote extends React.Component {
     updateNoteContent(newNoteContent) {
         this.setState({
             noteContent: newNoteContent
+        })
+    }
+
+    updateTargetFolder(newTargetFolder) {
+        this.setState({
+            targetFolderId: newTargetFolder
         })
     }
 
@@ -63,14 +97,21 @@ class AddNote extends React.Component {
 
                         <label htmlFor='targetFolder'>Add to Which Folder?</label>
                         <br></br>
-                        <select name='targetFolder' id='targetFolder'>
+                        <select name='targetFolder' id='targetFolder'
+                            onChange={e => this.updateTargetFolder(e.target.value)}>
+                            <option value={''}>---</option>
                             {selectOptions}
                         </select>
 
                         <br></br>
 
-                        <button type='submit'>
-                            Create New Folder!
+                        <button type='submit'
+                            disabled={
+                                !(this.state.noteName.length > 0) ||
+                                !(this.state.noteContent.length > 0) ||
+                                !(this.state.targetFolderId.length > 0)
+                            }>
+                            Create New Note!
                         </button>
                     </fieldset>
                 </form>

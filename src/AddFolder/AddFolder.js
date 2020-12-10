@@ -4,7 +4,9 @@ import NotefulContext from '../NotefulContext';
 class AddFolder extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { folderName: '' }
+        this.state = {
+            folderName: '',
+        }
     }
 
     static contextType = NotefulContext;
@@ -51,14 +53,15 @@ class AddFolder extends React.Component {
                             value={this.state.folderName}
                             onChange={e => this.updateFolderName(e.target.value)} />
                         <br></br>
-                        <button type='submit'>
+                        <button type='submit'
+                            disabled={!(this.state.folderName.length > 0)}>
                             Create New Folder!
                         </button>
                     </fieldset>
-                    <button onClick={() => this.props.history.goBack()}>
-                        Cancel
-                    </button>
                 </form>
+                <button onClick={() => this.props.history.goBack()}>
+                    Cancel
+                </button>
             </div>
         )
     }
