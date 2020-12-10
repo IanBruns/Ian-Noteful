@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import NotefulContext from '../NotefulContext';
-import './Note.css'
+import './SingleNote.css'
 
-class Note extends React.Component {
+class SingleNote extends React.Component {
     static contextType = NotefulContext;
+    static defaultProps = {
+        onDeleteNote: () => { }
+    }
 
     deleteButton = (e) => {
         e.stopPropagation();
@@ -24,6 +27,7 @@ class Note extends React.Component {
             })
             .then(() => {
                 deleteItem(this.props.id);
+                this.props.onDeleteNote()
             })
             .catch(err => {
                 alert(err)
@@ -52,10 +56,10 @@ class Note extends React.Component {
     }
 }
 
-Note.propTypes = {
+SingleNote.propTypes = {
     id: PropTypes.string,
     modified: PropTypes.string,
     name: PropTypes.string
 }
 
-export default Note;
+export default SingleNote;

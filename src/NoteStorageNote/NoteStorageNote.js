@@ -1,10 +1,14 @@
 import React from 'react';
-import Note from '../Note/Note'
+import SingleNote from '../SingleNote/SingleNote'
 import NotefulContext from '../NotefulContext';
 import './NoteStorageNote.css';
 
 class NoteStorageNote extends React.Component {
     static contextType = NotefulContext;
+
+    handleDeleteNote = () => {
+        this.props.history.push('/')
+    }
 
     render() {
         const { notes } = this.context;
@@ -14,12 +18,13 @@ class NoteStorageNote extends React.Component {
 
         return (
             <div className='NoteStorage' >
-                <Note
+                <SingleNote
                     key={targetNote.id}
                     id={targetNote.id}
                     name={targetNote.name}
                     modified={targetNote.modified}
                     folderId={targetNote.folderId}
+                    onDeleteNote={this.handleDeleteNote}
                 />
                 <p>
                     {targetNote.content}

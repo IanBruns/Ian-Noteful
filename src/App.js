@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './App.css';
 import NotefulApp from './NotefulApp/NotefulApp'
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 function App() {
   return (
