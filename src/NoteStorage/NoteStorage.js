@@ -3,6 +3,7 @@ import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext'
 import { Link } from 'react-router-dom'
 import './NoteStorage.css';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 class NoteStorage extends React.Component {
     static contextType = NotefulContext;
@@ -25,7 +26,9 @@ class NoteStorage extends React.Component {
 
         return (
             <div className='NoteStorage' >
-                {notesMap}
+                <ErrorBoundary>
+                    {notesMap}
+                </ErrorBoundary>
                 <Link
                     to={'/addNote'}>
                     <button>

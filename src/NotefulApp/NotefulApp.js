@@ -1,5 +1,5 @@
 import React from 'react';
-import './NotefulApp.css';
+import { Route, Switch } from 'react-router-dom'
 import SideBar from '../SideBar/SideBar';
 import SideBarFolder from '../SideBarFolder/SideBarFolder';
 import SideBarNote from '../SideBarNote/SideBarNote';
@@ -9,7 +9,7 @@ import NoteStorageNote from '../NoteStorageNote/NoteStorageNote';
 import NotefulContext from '../NotefulContext'
 import AddFolder from '../AddFolder/AddFolder'
 import AddNote from '../AddNote/AddNote'
-import { Route } from 'react-router-dom'
+import './NotefulApp.css';
 
 class NotefulApp extends React.Component {
     state = {
@@ -102,19 +102,21 @@ class NotefulApp extends React.Component {
                         />
                     </div>
                     <div className='flex-three'>
-                        <Route exact path='/'
-                            component={NoteStorage}
-                        />
-                        <Route path='/folder/:folderId'
-                            component={NoteStorageFolder}
-                        />
-                        <Route path='/note/:noteId'
-                            component={NoteStorageNote}
-                        />
-                        <Route path='/addFolder'
-                            component={AddFolder} />
-                        <Route path='/addNote'
-                            component={AddNote} />
+                        <Switch>
+                            <Route exact path='/'
+                                component={NoteStorage}
+                            />
+                            <Route path='/folder/:folderId'
+                                component={NoteStorageFolder}
+                            />
+                            <Route path='/note/:noteId'
+                                component={NoteStorageNote}
+                            />
+                            <Route path='/addFolder'
+                                component={AddFolder} />
+                            <Route path='/addNote'
+                                component={AddNote} />
+                        </Switch>
                     </div>
                 </NotefulContext.Provider>
             </div>
