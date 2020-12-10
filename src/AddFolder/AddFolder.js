@@ -8,7 +8,11 @@ class AddFolder extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        console.log('click')
+        console.log(this.state.folderName)
+    }
+
+    updateFolderName(newFolderName) {
+        this.setState({ folderName: newFolderName })
     }
 
     render() {
@@ -20,7 +24,8 @@ class AddFolder extends React.Component {
                         <label htmlFor='folderName'>Enter your folder name here:</label>
                         <br></br>
                         <input type='text' name='folderName' id='folderName'
-                            value={this.state.folderName} />
+                            value={this.state.folderName}
+                            onChange={e => this.updateFolderName(e.target.value)} />
                         <br></br>
                         <button type='submit'>
                             Create New Folder!
