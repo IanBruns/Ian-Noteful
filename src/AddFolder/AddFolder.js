@@ -1,4 +1,5 @@
 import React from 'react'
+import NotefulContext from '../NotefulContext';
 
 class AddFolder extends React.Component {
     constructor(props) {
@@ -6,9 +7,32 @@ class AddFolder extends React.Component {
         this.state = { folderName: '' }
     }
 
+    static contextType = NotefulContext;
+
     handleSubmit = e => {
         e.preventDefault();
-        console.log(this.state.folderName)
+
+        const { addFolder } = this.context;
+
+        fetch('http://localhost:9090/folders', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: this.state.folderName }),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('We could not post this new folder')
+                }
+                return response.json();
+            })
+            .then(data => {
+                addFolder(data);
+                this.setState({ folderName: '' })
+                this.props.history.goBack();
+            })
+            .catch(err => {
+                alert(err);
+            })
     }
 
     updateFolderName(newFolderName) {

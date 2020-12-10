@@ -62,6 +62,11 @@ class NotefulApp extends React.Component {
         })
     }
 
+    addFolder = (newFolder) => {
+        const addState = [...this.state.folders, newFolder];
+        this.setState({ folders: addState })
+    }
+
     componentDidMount() {
         this.getFolderData();
         this.getNoteData();
@@ -71,7 +76,8 @@ class NotefulApp extends React.Component {
         const contextValue = {
             notes: this.state.notes,
             folders: this.state.folders,
-            deleteItem: this.deleteItem
+            deleteItem: this.deleteItem,
+            addFolder: this.addFolder
         }
         return (
             <div className='NotefulApp'>

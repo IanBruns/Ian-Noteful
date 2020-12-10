@@ -21,7 +21,8 @@ class SideBar extends React.Component {
             <div className='SideBar'>
                 {folderList}
                 <div className='add'>
-                    <h3>Add New Folder</h3>
+                    <Link
+                        to={'/addFolder'}><h3>Add New Folder</h3></Link>
                 </div>
             </div>
         )
