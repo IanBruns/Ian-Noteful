@@ -49,7 +49,7 @@ class NotefulApp extends React.Component {
                 })
             })
             .catch(err => {
-                console.log(err)
+                alert(err);
             })
     }
 

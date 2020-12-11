@@ -57,9 +57,17 @@ class SingleNote extends React.Component {
 }
 
 SingleNote.propTypes = {
-    id: PropTypes.string,
-    modified: PropTypes.string,
-    name: PropTypes.string
+    id: PropTypes
+        .string
+        .isRequired,
+    modified: PropTypes
+        .string
+        .isRequired,
+    name: PropTypes
+        .string
+        .isRequired,
+    onDeleteNote: PropTypes
+        .isRequired
 }
 
 export default SingleNote;
