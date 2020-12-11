@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import './App.css';
 import NotefulApp from './NotefulApp/NotefulApp'
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
 
 function App() {
   return (
@@ -10,9 +9,7 @@ function App() {
         <h1><Link to={`/`}>Noteful! By Ian</Link></h1>
       </header>
       <main>
-        <ErrorBoundary>
-          <NotefulApp />
-        </ErrorBoundary>
+        <NotefulApp />
       </main>
     </div>
   );

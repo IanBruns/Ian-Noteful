@@ -29,7 +29,7 @@ class NoteStorageFolder extends React.Component {
                 <Link
                     to={'/addNote'}>
                     <button>
-                        Add New Folder
+                        Add New Note
                     </button>
                 </Link>
             </div>

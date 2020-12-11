@@ -1,6 +1,7 @@
 import React from 'react';
 import SingleNote from '../SingleNote/SingleNote'
 import NotefulContext from '../NotefulContext';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 import './NoteStorageNote.css';
 
 class NoteStorageNote extends React.Component {
@@ -26,9 +27,11 @@ class NoteStorageNote extends React.Component {
                     folderId={targetNote.folderId}
                     onDeleteNote={this.handleDeleteNote}
                 />
-                <p>
-                    {targetNote.content}
-                </p>
+                <ErrorBoundary>
+                    <p>
+                        {targetNote.content}
+                    </p>
+                </ErrorBoundary>
             </div>
         )
     }

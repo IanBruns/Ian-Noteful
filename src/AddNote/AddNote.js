@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types'
 
 class AddNote extends React.Component {
     static contextType = NotefulContext;
@@ -43,7 +44,9 @@ class AddNote extends React.Component {
                 })
                 this.props.history.goBack();
             })
-
+            .catch(err => {
+                alert(err);
+            })
     }
 
     updateNoteName(newNoteName) {
@@ -121,6 +124,13 @@ class AddNote extends React.Component {
             </div>
         )
     }
+}
+
+AddNote.propTypes = {
+    history: PropTypes
+        .object,
+    goBack: PropTypes
+        .func
 }
 
 export default AddNote;

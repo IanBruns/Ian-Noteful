@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types'
 
 class AddFolder extends React.Component {
     constructor(props) {
@@ -65,6 +66,13 @@ class AddFolder extends React.Component {
             </div>
         )
     }
+}
+
+AddFolder.propTypes = {
+    history: PropTypes
+        .object,
+    goBack: PropTypes
+        .func
 }
 
 export default AddFolder;
