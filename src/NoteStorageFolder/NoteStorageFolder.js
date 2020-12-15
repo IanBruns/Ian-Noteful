@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import Note from '../Note/Note'
 import NotefulContext from '../NotefulContext';
+import PropTypes from 'prop-types'
 import './NoteStorageFolder.css';
 
 class NoteStorageFolder extends React.Component {
@@ -35,6 +36,10 @@ class NoteStorageFolder extends React.Component {
             </div>
         )
     }
+}
+
+NoteStorageFolder.propTypes = {
+    match: PropTypes.object
 }
 
 export default NoteStorageFolder;

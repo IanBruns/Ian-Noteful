@@ -2,6 +2,7 @@ import React from 'react';
 import SingleNote from '../SingleNote/SingleNote'
 import NotefulContext from '../NotefulContext';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
+import PropTypes from 'prop-types'
 import './NoteStorageNote.css';
 
 class NoteStorageNote extends React.Component {
@@ -35,6 +36,11 @@ class NoteStorageNote extends React.Component {
             </div>
         )
     }
+}
+
+NoteStorageNote.propTypes = {
+    history: PropTypes.object,
+    match: PropTypes.object
 }
 
 export default NoteStorageNote;

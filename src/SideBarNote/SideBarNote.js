@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import PropTypes from 'prop-types'
 import './SideBarNote.css'
 
 class SideBarNote extends React.Component {
@@ -27,6 +28,11 @@ class SideBarNote extends React.Component {
             </div>
         )
     }
+}
+
+SideBarNote.propTypes = {
+    history: PropTypes.object,
+    match: PropTypes.object
 }
 
 export default SideBarNote;
