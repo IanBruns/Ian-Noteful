@@ -23,9 +23,9 @@ class NoteStorageNote extends React.Component {
                 <SingleNote
                     key={targetNote.id}
                     id={targetNote.id}
-                    name={targetNote.name}
-                    modified={targetNote.modified}
-                    folderId={targetNote.folderId}
+                    name={targetNote.note_name}
+                    modified={targetNote.date_modified}
+                    folderId={targetNote.assigned_folder}
                     onDeleteNote={this.handleDeleteNote}
                 />
                 <ErrorBoundary>

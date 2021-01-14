@@ -41,7 +41,7 @@ class SingleNote extends React.Component {
         return (
             <div className='Note'>
                 <Link to={`/note/${this.props.id}`}>
-                    <h2>{this.props.name}</h2>
+                    <h2>{this.props.note_name}</h2>
                 </Link>
                 <div className='note-details'>
                     <p>

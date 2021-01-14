@@ -17,10 +17,10 @@ class AddFolder extends React.Component {
 
         const { addFolder } = this.context;
 
-        fetch('http://localhost:9090/folders', {
+        fetch('http://localhost:9090/api/folder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name: this.state.folderName }),
+            body: JSON.stringify({ folder_name: this.state.folderName }),
         })
             .then(response => {
                 if (!response.ok) {

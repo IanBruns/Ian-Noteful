@@ -13,7 +13,7 @@ class SideBar extends React.Component {
             return (
                 <div className='folder' key={folder.id}>
                     <Link
-                        to={`/folder/${folder.id}`}>{folder.name}</Link>
+                        to={`/folder/${folder.id}`}>{folder.folder_name}</Link>
                 </div>
             )
         })

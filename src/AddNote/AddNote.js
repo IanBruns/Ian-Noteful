@@ -19,13 +19,13 @@ class AddNote extends React.Component {
         const { addNote } = this.context;
         const modified = new Date().toISOString();
 
-        fetch('http://localhost:9090/notes', {
+        fetch('http://localhost:9090/api/note', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                name: this.state.noteName,
-                modified: modified,
-                folderId: this.state.targetFolderId,
+                note_name: this.state.noteName,
+                date_modified: modified,
+                assigned_folder: this.state.targetFolderId,
                 content: this.state.noteContent,
             }),
         })
@@ -72,7 +72,7 @@ class AddNote extends React.Component {
 
         const selectOptions = folders.map((folder, i) => {
             return (
-                <option key={i} value={folder.id}>{folder.name}</option>
+                <option key={i} value={folder.id}>{folder.folder_name}</option>
             )
         })
 

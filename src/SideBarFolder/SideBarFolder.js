@@ -13,7 +13,7 @@ class SideBarFolder extends React.Component {
                 <div className='folder' key={folder.id}>
                     <NavLink
                         activeClassName='selected'
-                        to={`/folder/${folder.id}`}>{folder.name}</NavLink>
+                        to={`/folder/${folder.id}`}>{folder.folder_name}</NavLink>
                 </div>
             )
         })
