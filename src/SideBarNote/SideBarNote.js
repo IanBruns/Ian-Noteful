@@ -10,7 +10,7 @@ class SideBarNote extends React.Component {
         const { folders, notes } = this.context;
         const targetNote = notes.find(note => {
             return note.id === this.props.match.params.noteId;
-        }) || { folderId: this.props.match.params.noteId }
+        }) || { folderId: Number(this.props.match.params.noteId) }
         const targetFolder = folders.find(folder => {
             return folder.id === targetNote.folderId
         }) || { name: '' }
@@ -22,7 +22,7 @@ class SideBarNote extends React.Component {
                 </button>
                 <div className='location'>
                     <p>
-                        You are currently in the {targetFolder.name} folder!
+                        You are currently in the {targetFolder.folder_name} folder!
                     </p>
                 </div>
             </div>

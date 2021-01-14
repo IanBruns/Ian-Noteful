@@ -10,7 +10,7 @@ class Note extends React.Component {
     deleteButton = (e) => {
         e.stopPropagation();
         const { deleteItem } = this.context;
-        fetch(`http://localhost:9090/notes/${this.props.id}`, {
+        fetch(`http://localhost:9090/api/note/${this.props.id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -20,7 +20,7 @@ class Note extends React.Component {
                 if (!response.ok) {
                     throw new Error('There was an error in deletion')
                 }
-                return response.json();
+                return response;
             })
             .then(() => {
                 deleteItem(this.props.id);
@@ -54,7 +54,7 @@ class Note extends React.Component {
 
 Note.propTypes = {
     id: PropTypes
-        .string
+        .number
         .isRequired,
     modified: PropTypes
         .string

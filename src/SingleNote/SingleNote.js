@@ -13,7 +13,7 @@ class SingleNote extends React.Component {
     deleteButton = (e) => {
         e.stopPropagation();
         const { deleteItem } = this.context;
-        fetch(`http://localhost:9090/notes/${this.props.id}`, {
+        fetch(`http://localhost:9090/api/note/${this.props.id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -23,7 +23,7 @@ class SingleNote extends React.Component {
                 if (!response.ok) {
                     throw new Error('There was an error in deletion')
                 }
-                return response.json();
+                return response;
             })
             .then(() => {
                 deleteItem(this.props.id);
@@ -35,7 +35,7 @@ class SingleNote extends React.Component {
     }
 
     render() {
-        let date = new Date(this.props.modified);
+        let date = new Date(this.props.date_modified);
         let formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 
         return (
@@ -57,7 +57,6 @@ class SingleNote extends React.Component {
 }
 
 SingleNote.propTypes = {
-    id: PropTypes.string,
     modified: PropTypes.string,
     name: PropTypes.string,
     onDeleteNote: PropTypes.func

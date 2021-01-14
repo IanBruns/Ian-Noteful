@@ -15,7 +15,7 @@ class NoteStorageNote extends React.Component {
     render() {
         const { notes } = this.context;
         const targetNote = notes.find(note => {
-            return note.id === this.props.match.params.noteId
+            return note.id === Number(this.props.match.params.noteId)
         }) || { id: '' }
 
         return (
@@ -23,9 +23,9 @@ class NoteStorageNote extends React.Component {
                 <SingleNote
                     key={targetNote.id}
                     id={targetNote.id}
-                    name={targetNote.note_name}
-                    modified={targetNote.date_modified}
-                    folderId={targetNote.assigned_folder}
+                    note_name={targetNote.note_name}
+                    date_modified={targetNote.date_modified}
+                    assigned_folder={targetNote.assigned_folder}
                     onDeleteNote={this.handleDeleteNote}
                 />
                 <ErrorBoundary>
