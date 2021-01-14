@@ -19,7 +19,7 @@ class AddNote extends React.Component {
         const { addNote } = this.context;
         const modified = new Date().toISOString();
 
-        fetch('http://localhost:9090/api/note', {
+        fetch('https://serene-anchorage-52925.herokuapp.com/api/note', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

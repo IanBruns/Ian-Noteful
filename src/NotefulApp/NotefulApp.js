@@ -18,7 +18,7 @@ class NotefulApp extends React.Component {
     }
 
     getFolderData() {
-        fetch(`http://localhost:9090/api/folder`)
+        fetch(`https://serene-anchorage-52925.herokuapp.com/api/folder`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Hey, something went wrong')
@@ -36,7 +36,7 @@ class NotefulApp extends React.Component {
     }
 
     getNoteData() {
-        fetch(`http://localhost:9090/api/note`)
+        fetch(`https://serene-anchorage-52925.herokuapp.com/api/note`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Hey, something went wrong')
